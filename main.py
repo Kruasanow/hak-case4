@@ -1,6 +1,9 @@
 from flask import Flask, render_template, sessions, url_for, request, session, redirect
 
 from werkzeug.security import generate_password_hash, check_password_hash
+from add_db import ins_data
+from change_color import change_color
+from get_values import select_values
 
 DEBUG = True 
 
@@ -11,13 +14,35 @@ def index():
     print(url_for('index'))
 
     if request.method == "POST":
+        date = request.form['date']
+        name = request.form['name']
+
+        if len(date) > 3 or len(name) > 3:
+            print('bad len')
+            good_date = ''
+            good_name = ''
+        else:
+            good_date = date
+            good_name = name
+            ins_data(date,name)
+
+        return render_template('index.html', good_name = good_name, good_date = good_date)
+    return render_template('index.html')
+
+
+@app.route('/secpage', methods = ['get','post'])
+def secpage():
+    print(url_for('secpage'))
+
+    change_color(select_values()[0],select_values()[1])
+
+    if request.method == "POST":
         ident = request.form['choose_rest']
         
         
 
-        return render_template('index.html')
-    return render_template('index.html')
-
+        return render_template('secpage.html')
+    return render_template('secpage.html')
 
 @app.errorhandler(404)
 def error404Catch(error):
