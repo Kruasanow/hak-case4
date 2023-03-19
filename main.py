@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from add_db import ins_data
 from change_color import change_color
 from get_values import select_values
+from werkzeug.utils import secure_filename
 
 DEBUG = True 
 
@@ -37,11 +38,14 @@ def secpage():
     change_color(select_values()[0],select_values()[1])
 
     if request.method == "POST":
-        ident = request.form['choose_rest']
-        
+        file = request.files['file']
+        if file:
+            filename = secure_filename(file.filename)
+            print(filename)
+            ff1 = filename
         
 
-        return render_template('secpage.html')
+        return render_template('secpage.html', file2 = ff1)
     return render_template('secpage.html')
 
 @app.errorhandler(404)

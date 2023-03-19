@@ -57,8 +57,9 @@ def change_color(name,data):
     for cell in worksheet[column]:
         cell.fill = fill
 
-    new_name_file = str(datetime.datetime.now())+'.xlsx'
+    new_name_file = select_values()[0] + str(datetime.datetime.now())+'.xls'
+    a_file = 'output/' + new_name_file
 
     # save the changes
-    workbook.save('output/example.xlsx')
+    workbook.save(a_file)
     print('change color works')
