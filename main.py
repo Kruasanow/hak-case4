@@ -6,6 +6,7 @@ from change_color import change_color
 from get_values import select_values
 from werkzeug.utils import secure_filename
 from dec import outd
+from cleartable import outdd
 
 DEBUG = True 
 
@@ -44,14 +45,18 @@ def secpage():
             filename = secure_filename(file.filename)
             print(filename)
             ff1 = filename
-            fullway = 'output/' + str(ff1)
+            fullway = 'output/data4.xls'
             outd1 = outd(fullway)
             print('#######################################')
+            out0 = str(outd1[0])
+            out1 = outd1[1]
+            out2 = outd1[2]
             print(outd1[0])
             print(outd1[1])
             print(outd1[2])
             print('#######################################')
-        return render_template('secpage.html', file2 = ff1)
+            outdd(fullway)
+        return render_template('secpage.html', file2 = ff1, o0 = out0, o1 = out1, o2 = out2)
     return render_template('secpage.html')
 
 @app.errorhandler(404)

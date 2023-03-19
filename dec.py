@@ -9,10 +9,11 @@ def outd(file):
     print('Дата создания файла:  '+str(meta.create_time)) # Вывод даты создания файла
     print('Дата последнего сохранения:  '+str(meta.last_saved_time))# Вывод даты сохранения файла
     meta.dump() # Вывод всех метаданных на экран
-    metadump = meta.dump
+    metadump = meta.dump()
+    # print(str(metadump))
     mct = str(meta.create_time)
     mlst = str(meta.last_saved_time)
     ole.close() # Закрытие файла
     return [metadump, mct, mlst]
 
-outd('data4.xls')
+outd('output/data4.xls')

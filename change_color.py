@@ -36,7 +36,7 @@ def change_color(name,data):
 
 
     # load the Excel file
-    workbook = openpyxl.load_workbook('data1.xlsx')
+    workbook = openpyxl.load_workbook('data2.xlsx')
 
     # select the worksheet
     worksheet = workbook['data']
