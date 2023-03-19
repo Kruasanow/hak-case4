@@ -58,6 +58,7 @@ def change_color(name,data):
         cell.fill = fill
 
     new_name_file = select_values()[0] + str(datetime.datetime.now())+'.xls'
+    new_name_file = new_name_file.replace(':','_').replace(' ','_')
     a_file = 'output/' + new_name_file
 
     # save the changes

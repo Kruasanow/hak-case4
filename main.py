@@ -5,6 +5,7 @@ from add_db import ins_data
 from change_color import change_color
 from get_values import select_values
 from werkzeug.utils import secure_filename
+from dec import outd
 
 DEBUG = True 
 
@@ -43,8 +44,13 @@ def secpage():
             filename = secure_filename(file.filename)
             print(filename)
             ff1 = filename
-        
-
+            fullway = 'output/' + str(ff1)
+            outd1 = outd(fullway)
+            print('#######################################')
+            print(outd1[0])
+            print(outd1[1])
+            print(outd1[2])
+            print('#######################################')
         return render_template('secpage.html', file2 = ff1)
     return render_template('secpage.html')
 

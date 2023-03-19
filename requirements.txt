@@ -2,3 +2,7 @@ flask = 2.1.2
 pandas
 psycopg2-binary
 openpyxl
+werkzeug
+binascii
+codecs
+olefile
