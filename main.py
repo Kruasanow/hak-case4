@@ -13,6 +13,8 @@ def index():
     if request.method == "POST":
         ident = request.form['choose_rest']
         
+        
+
         return render_template('index.html')
     return render_template('index.html')
 
