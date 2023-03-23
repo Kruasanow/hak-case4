@@ -16,4 +16,4 @@ def outd(file):
     ole.close() # Закрытие файла
     return [metadump, mct, mlst]
 
-outd('output/data4.xls')
+# outd('output/data4.xls')

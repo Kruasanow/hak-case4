@@ -1,4 +1,5 @@
 import psycopg2
+import pandas as pd
 
 def db():
     conn = psycopg2.connect(
@@ -10,11 +11,8 @@ def db():
     return conn
 
 
-
 conn = db()
-
 cur = conn.cursor()
-
 cur.execute('DROP TABLE IF EXISTS test;')
 cur.execute("""
             CREATE TABLE test (
@@ -30,7 +28,6 @@ cur.execute("""
                 metrica TIMESTAMP DEFAULT NOW() NOT NULL
             );
             """)
-
 cur.execute('DROP TABLE IF EXISTS datename;')
 cur.execute("""
             CREATE TABLE datename (
@@ -39,15 +36,53 @@ cur.execute("""
                 addpole varchar(50)
             );
             """)
-
-# cur.execute("""
-#         ALTER TABLE test
-#         DROP COLUMN metrica;
-#         """)
-
 conn.commit()
-
-
-
 cur.close()
 conn.close()
+
+
+conn = db()
+cur = conn.cursor()
+cur.execute('DROP TABLE IF EXISTS users;')
+cur.execute("""
+            CREATE TABLE users (
+                usr varchar(50),
+                password varchar(50)
+            );
+            """)
+conn.commit()
+cur.close()
+conn.close()
+
+
+
+# name_file = 'data33.csv'
+# name_sheet = 'data'
+# name_table = 'test'
+# df = pd.read_csv(name_file)
+# print(list(df.columns))
+# k1 = list(df['full_name'])
+# k2 = list(df['mail'])
+# k3 = list(df['phone'])
+# k4 = list(df['time'])
+# k5 = list(df['city'])
+# k6 = list(df['address'])
+# k7 = list(df['er_id'])
+# k8 = list(df['state'])
+# k9 = list(df['loyalty'])
+# data_lists =[]
+# for i in range(len(k1)):
+#     data_lists.append([str(k1[i]),str(k2[i]),str(k3[i]),str(k4[i]),str(k5[i]),str(k6[i]),str(k7[i]),str(k8[i]),str(k9[i])])
+# conn = db()
+# cur = conn.cursor()
+# print(df['full_name'][0])
+# # Загружаем данные из DataFrame
+# for data in data_lists:
+#     cur.execute("INSERT INTO test VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", data)
+# conn.commit()
+# cur.close()
+# conn.close()
+
+
+# go_db()
+# add_base()

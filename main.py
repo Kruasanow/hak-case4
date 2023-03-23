@@ -1,12 +1,13 @@
 from flask import Flask, render_template, sessions, url_for, request, session, redirect
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from add_db import ins_data
+from add_db import ins_data, upassw
 from change_color import change_color
 from get_values import select_values
 from werkzeug.utils import secure_filename
 from dec import outd
 from cleartable import outdd
+from add_db import check_passw
 
 DEBUG = True 
 
@@ -17,19 +18,21 @@ def index():
     print(url_for('index'))
 
     if request.method == "POST":
-        date = request.form['date']
+        passwd = request.form['passwd']
         name = request.form['name']
 
-        if len(date) > 3 or len(name) > 3:
+        if len(passwd) != 3 or len(name) != 3:
             print('bad len')
-            good_date = ''
+            good_passwd = ''
             good_name = ''
         else:
-            good_date = date
+            good_passwd = passwd
             good_name = name
-            ins_data(date,name)
-
-        return render_template('index.html', good_name = good_name, good_date = good_date)
+            # ins_data(passwd,name)
+            # upassw(date,name)
+        check_passw(good_passwd,good_name)
+        print(check_passw(good_passwd,good_name))
+        return render_template('index.html', good_name = good_name, good_date = good_passwd)
     return render_template('index.html')
 
 
@@ -45,12 +48,12 @@ def secpage():
             filename = secure_filename(file.filename)
             print(filename)
             ff1 = filename
-            fullway = 'output/data4.xls'
+            fullway = 'output/' + str(ff1)
             outd1 = outd(fullway)
-            print('#######################################')
-            out0 = str(outd1[0])
+            out0 = outd1[0]
             out1 = outd1[1]
             out2 = outd1[2]
+            print('#######################################')
             print(outd1[0])
             print(outd1[1])
             print(outd1[2])

@@ -1,9 +1,9 @@
 from openpyxl import load_workbook
 from openpyxl.styles import Font
 
-def outdd(file):
+def outdd(fileway):
     # загружаем существующий файл Excel
-    workbook = load_workbook(filename='data2.xlsx')
+    workbook = load_workbook(filename=fileway)
 
     # получаем активный лист
     worksheet = workbook.active
