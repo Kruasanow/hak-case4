@@ -58,8 +58,10 @@ def check_passw(usr,passwd):
     for i in a:
         if i[0] != u or i[1] != p:
             print('wrong')
+            status = 'wrong identifier...'
             continue
         else:
             print('good')
+            status = 'true'
             t = True
-    return t
+    return [t, status]
