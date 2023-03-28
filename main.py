@@ -114,15 +114,19 @@ def select_base():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    from get_datename import get_datename
+    get_list = get_datename()
     if request.method == "POST":
         if 'text1' in request.form:
             name = request.form.get("text1")
             passw = request.form.get("text2")
-            ins_data(name,passw)
+            descr = request.form.get("text3")
+            ins_data(name,passw,descr)
             status = '+User'
-        return render_template('admin.html', status = status)
+            
+        return render_template('admin.html', status = status, getlist = get_list)
     
-    return render_template('admin.html')
+    return render_template('admin.html', getlist = get_list)
 
 @app.errorhandler(404)
 def error404Catch(error):

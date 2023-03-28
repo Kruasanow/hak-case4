@@ -95,15 +95,21 @@
         </form> -->
       
         <form action="/admin" method="POST">
-          <label for="text">Write login :</label><br>
+          <label for="text1">Write login :</label><br>
           <textarea id="text" name="text1"></textarea>
-          <label for="text">Write passw :</label><br>
+          <label for="text2">Write passw :</label><br>
           <textarea id="text" name="text2"></textarea>
+          <label for="text3">Write description :</label><br>
+          <textarea id="text" name="text3"></textarea>
           <button type="submit">Send</button>
         </form>
         {{ status }}
       <br><br>
+
     </div> 
+    {% for i in get_list %}
+    {{ i[0] }}
+  {% endfor %}
     <div class="form_contact">
       <!-- {{ o1 }} <br>
       {{ o2 }} <br>
