@@ -1,5 +1,5 @@
 from init_db import db
-
+import datetime
 
 
 def ins_data(date, name, addpole=None):
@@ -24,26 +24,22 @@ def ins_data(date, name, addpole=None):
     cur.close()
     conn.close()
 
-
-# def upassw(usr,password):
-#         conn = db()
-#         cur = conn.cursor()
-
-#         cur.execute('INSERT INTO users'
-#                 '('
-#                 'usr,password'
-#                 ')'
-#         'VALUES ('
-#                 '%s, %s'
-#                 ')'
-#                 (
-#                 usr, password
-#                 )
-#                 )
-#         conn.commit()
-
-#         cur.close()
-#         conn.close()
+def ins_file_data(user, file, date=None, hash=None, fprint=None, line1=None, line2=None, line3=None):
+    conn = db()
+    cur = conn.cursor()
+    current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # current_time = datetime.datetime.fromtimestamp(cf)
+    cur.execute(
+        'INSERT INTO markedbase (username, file, hash, fprint, line1, line2, line3, date, metrica) '
+        'VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)',
+        (user, file, hash, fprint, line1, line2, line3, date, current_time)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+                # hash,'
+                # 'fprint, line1,'
+                # 'line2, line3,'
 
 def check_passw(usr,passwd):
     u = usr

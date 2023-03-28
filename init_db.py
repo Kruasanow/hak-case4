@@ -4,8 +4,8 @@ import pandas as pd
 def db():
     conn = psycopg2.connect(
         host="localhost",
-        user="ubuntu18",
-        password="rusanow",
+        user="hackaton",
+        password="vkathebest",
         database="hack_db"
     )
     return conn
@@ -29,6 +29,21 @@ def init_db():
                     metrica TIMESTAMP DEFAULT NOW() NOT NULL
                 );
                 """)
+    cur.execute('DROP TABLE IF EXISTS markedbase;')
+    cur.execute("""
+                CREATE TABLE markedbase (
+                    username varchar(50),
+                    file varchar(255),
+                    hash varchar(255),
+                    fprint varchar(255),
+                    line1 varchar(250),
+                    line2 varchar(250),
+                    line3 varchar(250),
+                    date varchar(250),
+                    metrica TIMESTAMP DEFAULT NOW() NOT NULL
+                );
+                """)
+
     cur.execute('DROP TABLE IF EXISTS datename;')
     cur.execute("""
                 CREATE TABLE datename (
@@ -37,13 +52,12 @@ def init_db():
                     addpole varchar(50)
                 );
                 """)
-    conn.commit()
-    cur.close()
-    conn.close()
+    # conn.commit()
+    # cur.close()
+    # conn.close()
 
-
-    conn = db()
-    cur = conn.cursor()
+    # conn = db()
+    # cur = conn.cursor()
     cur.execute('DROP TABLE IF EXISTS users;')
     cur.execute("""
                 CREATE TABLE users (
@@ -51,39 +65,15 @@ def init_db():
                     password varchar(50)
                 );
                 """)
+    
+    # cur.execute('DROP TABLE IF EXISTS filedata;')
+    # cur.execute("""
+    #             CREATE TABLE filedata (
+    #                 basename varchar(50),
+    #                  varchar(50)
+    #             );
+    #             """)
     conn.commit()
     cur.close()
     conn.close()
 
-
-
-# name_file = 'data33.csv'
-# name_sheet = 'data'
-# name_table = 'test'
-# df = pd.read_csv(name_file)
-# print(list(df.columns))
-# k1 = list(df['full_name'])
-# k2 = list(df['mail'])
-# k3 = list(df['phone'])
-# k4 = list(df['time'])
-# k5 = list(df['city'])
-# k6 = list(df['address'])
-# k7 = list(df['er_id'])
-# k8 = list(df['state'])
-# k9 = list(df['loyalty'])
-# data_lists =[]
-# for i in range(len(k1)):
-#     data_lists.append([str(k1[i]),str(k2[i]),str(k3[i]),str(k4[i]),str(k5[i]),str(k6[i]),str(k7[i]),str(k8[i]),str(k9[i])])
-# conn = db()
-# cur = conn.cursor()
-# print(df['full_name'][0])
-# # Загружаем данные из DataFrame
-# for data in data_lists:
-#     cur.execute("INSERT INTO test VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", data)
-# conn.commit()
-# cur.close()
-# conn.close()
-
-
-# go_db()
-# add_base()

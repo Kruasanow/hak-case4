@@ -48,6 +48,7 @@
       </div>
 
 
+
       <header class="site-navbar site-navbar-target bg-white" role="banner">
 
         <div class="container">
@@ -56,18 +57,18 @@
             <div class="col-lg-4">
               <nav class="site-navigation text-right ml-auto " role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                  <li class="active"><a href="index.html" class="nav-link">Home</a></li>
-                  <li><a href="secpage" class="nav-link">Second page</a></li>
+                  <li class="active"><a href="/" class="nav-link">Home</a></li>
+                  <!-- <li><a href="/" class="nav-link">Second page</a></li> -->
                   <!-- <li><a href="services.html" class="nav-link">Services</a></li> -->
                 </ul>
               </nav>
             </div>
             <div class="col-lg-4 text-center">
               <div class="site-logo">
-                <a href="index.html">Application for identification and tagging in databases </a>
+                <a href="index.html">GET DATA FROM CHOOSED FILE</a>
               </div>
            
-              
+
               <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-white"><span class="icon-menu h3 text-primary"></span></a></div>
             </div>
             <div class="col-lg-4">
@@ -85,89 +86,87 @@
         </div>
 
       </header>
-              <br><br>
-
-              <!-- <form action="" method=post enctype=multipart/form-data>
-                <p class="submit"><input type=file name=file>
-                   <input type=submit value=Load></p>
-              </form> -->
-
-      <form action="/", method="post", class="form_contact" enctype="multipart/form-data">
-        {{ status }}
-        <p>
-            <label>
-                Name  : 
-            </label>
-            {{ good_name }}
-            <input type="text", name="name", value="", required/>
-        </p>
-        <p>
-            <label>
-                Passwd   :  
-            </label>
-            {{ good_passwd }}
-            <input type="text", name="passwd", value="", required/>
-        </p>
-        <p class="submit">
-          <input type=file name=file>
-          <!-- <input type=submit value=Load></p> -->
-        <p>
-          <input type="submit" value="Mark"/>
-        </p>
-        {{ nfile }}  {{ dbstatus }}
-    </form>
-
+      <br><br>
+      <div class="form_contact">
       
+        <!-- <form action="" method=post enctype=multipart/form-data>
+          <p class="submit"><input type=file name=file>
+             <input type=submit value="Get data"></p>
+        </form> -->
+      
+        <form action="/select_base" method="POST">
+          <label for="selected-date">Выберите начальную дату:</label>
+          <input type="date" id="selected-date" name="selected-date">
+          <label for="selected-date-end">Выберите конечную дату:</label>
+          <input type="date" id="selected-date-end" name="selected-date-end">
+          <label for="text">Введите название файлав выгрузки:</label>
+          <textarea id="text" name="text"></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+        {{ dstart }}
+        {{ dstop }}
+        {{ name_file }}
 
-
-    
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-7">
-                <h2 class="footer-heading mb-4">About Us</h2>
-                <p>CodeCrew - The 3 best network engineers in St. Petersburg who Think they are programmers. </p>
-
+      <h4>Choosed file:</h4>
+      <h4>{{ file2 }}</h4>
+      <br><br>
+    </div> 
+    <div class="form_contact">
+      <!-- {{ o1 }} <br>
+      {{ o2 }} <br>
+      {{ o0 }} <br> -->
+      {% for i in outarr %}
+        {{i}} <br>
+      {% endfor %}
+    </div>
+    <br><br>
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-7">
+                  <h2 class="footer-heading mb-4">About Us</h2>
+                  <p>CodeCrew - The 3 best network engineers in St. Petersburg who Think they are programmers. </p>
+  
+                </div>
+                <div class="col-md-4 ml-auto">
+                  <h2 class="footer-heading mb-4">Features</h2>
+                  <ul class="list-unstyled">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Output page</a></li>
+                  </ul>
+                </div>
+  
               </div>
-              <div class="col-md-4 ml-auto">
-                <h2 class="footer-heading mb-4">Features</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Output page</a></li>
-                </ul>
-              </div>
-
+            </div>
+            <div class="col-md-4 ml-auto">
+  
+  
+  
+              <h2 class="footer-heading mb-4">Follow Us</h2>
+              <a href="https://www.youtube.com/@user-ut5cf9lw1x" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
+              <a href="https://www.youtube.com/@user-ut5cf9lw1x" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+              <a href="https://www.youtube.com/@user-ut5cf9lw1x" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+              <a href="https://www.youtube.com/@user-ut5cf9lw1x" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+              </form>
             </div>
           </div>
-          <div class="col-md-4 ml-auto">
-
-
-
-            <h2 class="footer-heading mb-4">Follow Us</h2>
-            <a href="https://www.youtube.com/@user-ut5cf9lw1x" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
-            <a href="https://www.youtube.com/@user-ut5cf9lw1x" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-            <a href="https://www.youtube.com/@user-ut5cf9lw1x" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-            <a href="https://www.youtube.com/@user-ut5cf9lw1x" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-            </form>
-          </div>
-        </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="pt-5">
-              <p class="small">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> made by Kruasanow, Portmen, AntoXa | All rights reserved<i class="icon-heart text-danger" aria-hidden="true"></i>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
+          <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+              <div class="pt-5">
+                <p class="small">
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> made by Kruasanow, Portman, AntoXa | All rights reserved<i class="icon-heart text-danger" aria-hidden="true"></i>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+              </div>
             </div>
+  
           </div>
-
         </div>
-      </div>
-    </footer>
+      </footer>
 
     </div>
 
