@@ -28,7 +28,7 @@ def index():
     print(url_for('index'))
     # from init_db import init_db
     # init_db()
-    ins_data('aaa', 'fff')
+    # ins_data('aaa', 'fff')
     from add_db import ins_file_data
     # ins_data('bbb','111')
     # ins_data('ccc','222')
@@ -111,6 +111,18 @@ def select_base():
         return render_template('select_base.html', dstart=date_start, dstop=date_stop, name_file = name_file)
     
     return render_template('select_base.html')
+
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    if request.method == "POST":
+        if 'text1' in request.form:
+            name = request.form.get("text1")
+            passw = request.form.get("text2")
+            ins_data(name,passw)
+            status = '+User'
+        return render_template('admin.html', status = status)
+    
+    return render_template('admin.html')
 
 @app.errorhandler(404)
 def error404Catch(error):

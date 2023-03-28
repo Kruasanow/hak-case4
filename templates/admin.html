@@ -65,7 +65,7 @@
             </div>
             <div class="col-lg-4 text-center">
               <div class="site-logo">
-                <a href="index.html">GET FILE CONTAINED LIST OF SORTED FINGERPRINTS</a>
+                <a href="index.html">User add panel</a>
               </div>
            
 
@@ -94,20 +94,14 @@
              <input type=submit value="Get data"></p>
         </form> -->
       
-        <form action="/select_base" method="POST">
-          <label for="selected-date">Choose start date:</label>
-          <input type="date" id="selected-date" name="selected-date">
-          <label for="selected-date-end">Choose final date:</label>
-          <input type="date" id="selected-date-end" name="selected-date-end">
-          <label for="text">Write name of output file :</label><br>
-          <textarea id="text" name="text"></textarea>
+        <form action="/admin" method="POST">
+          <label for="text">Write login :</label><br>
+          <textarea id="text" name="text1"></textarea>
+          <label for="text">Write passw :</label><br>
+          <textarea id="text" name="text2"></textarea>
           <button type="submit">Send</button>
         </form>
-        {{ dstart }}
-        {{ dstop }}
-        {{ name_file }}
-
-      <h4>{{ file2 }}</h4>
+        {{ status }}
       <br><br>
     </div> 
     <div class="form_contact">
