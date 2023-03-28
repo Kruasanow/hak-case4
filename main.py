@@ -25,7 +25,8 @@ def jinja_is_prime(n):
 @app.route('/', methods = ['get','post'])
 def index():
     print(url_for('index'))
-
+    from init_db import init_db
+    init_db()
     ins_data('aaa','fff')
     # ins_data('bbb','111')
     # ins_data('ccc','222')
@@ -99,4 +100,4 @@ def error404Catch(error):
 #-----LOAD------------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=False)
