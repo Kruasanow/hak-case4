@@ -26,14 +26,15 @@ import os
 @app.route('/', methods=['GET', 'POST'])
 def index():
     print(url_for('index'))
-    from init_db import init_db
-    init_db()
+    # from init_db import init_db
+    # init_db()
     ins_data('aaa', 'fff')
     from add_db import ins_file_data
     # ins_data('bbb','111')
     # ins_data('ccc','222')
     # ins_data('ggg','hhh')
-
+    from find_hash import calculate_hash, calculate_string_hash
+    # from check_meta import get_resault
     if request.method == "POST":
         passwd = request.form['passwd']
         name = request.form['name']
@@ -43,12 +44,15 @@ def index():
         # Сохраняем файл и получаем его путь
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], ins_name)
         file.save(file_path)
+        calc_hash = calculate_hash(file.filename)
+        calc_str_hash = calculate_string_hash(file.filename)
+        # calc_all_hash = calculate_all_hash(get_resault(secure_filename(file.filename)))
 
         # Получаем дату создания файла
         file_stat = os.stat(file_path)
         creation_time = file_stat.st_ctime
 
-        ins_file_data(name, ins_name, creation_time)
+        ins_file_data(name, ins_name, creation_time, calc_str_hash, calc_hash)
 
         if len(passwd) != 3 or len(name) != 3:
             print('bad len')

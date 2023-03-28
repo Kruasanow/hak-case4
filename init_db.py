@@ -34,11 +34,11 @@ def init_db():
                 CREATE TABLE markedbase (
                     username varchar(50),
                     file varchar(255),
-                    hash varchar(255),
-                    fprint varchar(255),
+                    hash1 varchar(255),
+                    hash2 varchar(255),
+                    hash3 varchar(250),
                     line1 varchar(250),
                     line2 varchar(250),
-                    line3 varchar(250),
                     date varchar(250),
                     metrica TIMESTAMP DEFAULT NOW() NOT NULL
                 );

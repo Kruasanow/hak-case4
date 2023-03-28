@@ -24,22 +24,19 @@ def ins_data(date, name, addpole=None):
     cur.close()
     conn.close()
 
-def ins_file_data(user, file, date=None, hash=None, fprint=None, line1=None, line2=None, line3=None):
+def ins_file_data(user, file, date=None, hash1=None, hash2=None, hash3=None, line1=None, line2=None):
     conn = db()
     cur = conn.cursor()
     current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # current_time = datetime.datetime.fromtimestamp(cf)
     cur.execute(
-        'INSERT INTO markedbase (username, file, hash, fprint, line1, line2, line3, date, metrica) '
+        'INSERT INTO markedbase (username, file, hash1, hash2, hash3, line1, line2, date, metrica) '
         'VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)',
-        (user, file, hash, fprint, line1, line2, line3, date, current_time)
+        (user, file, hash1, hash2, hash3, line1, line2, date, current_time)
     )
     conn.commit()
     cur.close()
     conn.close()
-                # hash,'
-                # 'fprint, line1,'
-                # 'line2, line3,'
 
 def check_passw(usr,passwd):
     u = usr
