@@ -54,7 +54,7 @@ def index():
 
         ins_file_data(name, ins_name, creation_time, calc_str_hash, calc_hash)
 
-        if len(passwd) != 3 or len(name) != 3:
+        if len(passwd) > 3 or len(name) > 3:
             print('bad len')
             good_passwd = ''
             good_name = ''

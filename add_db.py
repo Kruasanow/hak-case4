@@ -46,15 +46,23 @@ def check_passw(usr,passwd):
 
     cur.execute('SELECT date, name FROM datename;')
     a = cur.fetchall()
-    print(a)
+    # print(a)
     t = False
+    check_arr = []
     for i in a:
         if i[0] != u or i[1] != p:
-            print('wrong')
+            # print('wrong')
             status = 'wrong identifier...'
+            check_arr.append(status)
             continue
         else:
-            print('good')
+            # print('good')
             status = 'true'
+            check_arr.append(status)
+    # print(check_arr)
+    for i in check_arr:
+        if i == 'true':
             t = True
-    return [t, status]
+    return [t,status]
+
+# print(check_passw('asd','fdd')[0])
