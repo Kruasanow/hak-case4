@@ -113,8 +113,8 @@ def secpage():
         if file:
             filename = secure_filename(file.filename)
             print(filename)
-            # ff1 = filename
-            ff1 = session['name']
+            ff1 = filename
+            # ff1 = session['name']
             arr = get_resault(ff1)
            
         return render_template('secpage.html', file2 = ff1, outarr = arr)        
