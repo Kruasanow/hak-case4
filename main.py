@@ -14,6 +14,7 @@ DEBUG = True
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/home/hackaton/123/hak-case4/'
+app.secret_key = 'secretkeycodecrew'
 
 @app.template_test("jinja_is_prime")
 def jinja_is_prime(n):
@@ -38,6 +39,8 @@ def index():
     if request.method == "POST":
         passwd = request.form['passwd']
         name = request.form['name']
+        session['pass'] = passwd
+        session['name'] = name
         file = request.files['file']
         ins_name = file.filename
 
@@ -61,20 +64,34 @@ def index():
         else:
             good_passwd = passwd
             good_name = name
-
+        print("########################################3")
+        print(good_name,good_passwd)
         # ins_data(passwd,name)
         # upassw(date,name)
-        if check_passw(good_passwd, good_name)[0] == True:
-            hack.hidden_row(ins_name, hack.secret_message)
-            hack.hidden_sheet(ins_name, hack.secret_message)
-            hack.hidden_description(ins_name, hack.secret_message)
-            hack.change_color(ins_name, hack.name_agent)
-            hack.add_password(ins_name, hack.pass_on_excel)
+        if check_passw(session['name'], session['pass'])[0] == True:
+            from hack import prepare_for_hack
+            pfh = prepare_for_hack(session['name'],session['pass'])
+            print("########################################3")
+            print(check_passw(good_name,good_passwd)[0])
+            print(good_name,good_passwd)
+            hack.hidden_row(ins_name, pfh[0])
+            print("1########################################3")
+            hack.hidden_sheet(ins_name, pfh[0])
+            print("2########################################3")
+            hack.hidden_description(ins_name, pfh[0])
+            print("3########################################3")
+            hack.change_color(ins_name, pfh[1])
+            try:
+                print("4########################################3")
+                hack.add_password(ins_name, pfh[2])
+            except Exception:
+                print('exception')
+            print("5########################################3")
             dstat = 'database has been successfully tagged'
         else:
             dstat = ' not changed'
-
-        print(check_passw(good_passwd, good_name)[0])
+        
+        
         return render_template('index.html', dbstatus=dstat, good_name=good_name, good_passwd=good_passwd,
                                status=check_passw(good_passwd, good_name)[1], nfile=ins_name)
     return render_template('index.html', status='')

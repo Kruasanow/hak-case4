@@ -12,11 +12,14 @@ from openpyxl.styles import Font, Color, PatternFill
 from openpyxl.styles.colors import Color as ExcelColor
 from openpyxl.utils import get_column_letter
 
-name = 'data2.xlsx'
-name_agent = 'fff'
-pass_on_excel = 'aaa'
-data_create = (str(datetime.now()).replace(':','_').replace('.','_').replace('-','_').replace(' ',''))[0:18]
-secret_message = name_agent + data_create
+
+def prepare_for_hack(name_agent1,pass_on_excel1):
+    name_agent = name_agent1
+    pass_on_excel = pass_on_excel1
+    data_create = (str(datetime.now()).replace(':','_').replace('.','_').replace('-','_').replace(' ',''))[0:18]
+    secret_message = name_agent + data_create
+    return [secret_message, name_agent, pass_on_excel]
+
 
 def hidden_row(name, secret_message):
     # Открываем Excel-файл

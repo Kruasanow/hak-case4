@@ -65,4 +65,4 @@ def check_passw(usr,passwd):
             t = True
     return [t,status]
 
-# print(check_passw('asd','fdd')[0])
+print(check_passw('asd','fdd')[0])
