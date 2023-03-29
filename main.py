@@ -34,7 +34,7 @@ def index():
     # ins_data('bbb','111')
     # ins_data('ccc','222')
     # ins_data('ggg','hhh')
-    from find_hash import calculate_hash, calculate_string_hash
+    from find_hash import calculate_hash, calculate_string_hash,  calculate_all_hash
     # from check_meta import get_resault
     if request.method == "POST":
         passwd = request.form['passwd']
@@ -47,15 +47,15 @@ def index():
         # Сохраняем файл и получаем его путь
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], ins_name)
         file.save(file_path)
-        calc_hash = calculate_hash(file.filename)
-        calc_str_hash = calculate_string_hash(file.filename)
+        # calc_hash = calculate_hash(file.filename)
+        # calc_str_hash = calculate_string_hash(file.filename)
         # calc_all_hash = calculate_all_hash(get_resault(secure_filename(file.filename)))
 
-        # Получаем дату создания файла
-        file_stat = os.stat(file_path)
-        creation_time = file_stat.st_ctime
+        # # Получаем дату создания файла
+        # file_stat = os.stat(file_path)
+        # creation_time = file_stat.st_ctime
 
-        ins_file_data(name, ins_name, creation_time, calc_str_hash, calc_hash)
+        # ins_file_data(name, ins_name, creation_time, calc_str_hash, calc_hash, calc_all_hash)
 
         if len(passwd) > 3 or len(name) > 3:
             print('bad len')
@@ -64,33 +64,39 @@ def index():
         else:
             good_passwd = passwd
             good_name = name
-        print("########################################3")
         print(good_name,good_passwd)
         # ins_data(passwd,name)
         # upassw(date,name)
         if check_passw(session['name'], session['pass'])[0] == True:
             from hack import prepare_for_hack
             pfh = prepare_for_hack(session['name'],session['pass'])
-            print("########################################3")
             print(check_passw(good_name,good_passwd)[0])
             print(good_name,good_passwd)
             hack.hidden_row(ins_name, pfh[0])
-            print("1########################################3")
             hack.hidden_sheet(ins_name, pfh[0])
-            print("2########################################3")
+
             hack.hidden_description(ins_name, pfh[0])
-            print("3########################################3")
+
             hack.change_color(ins_name, pfh[1])
             try:
                 print("4########################################3")
                 hack.add_password(ins_name, pfh[2])
             except Exception:
                 print('exception')
-            print("5########################################3")
             dstat = 'database has been successfully tagged'
         else:
             dstat = ' not changed'
-        
+            
+        calc_hash = calculate_hash(file.filename)
+        calc_str_hash = calculate_string_hash(file.filename)
+        calc_all_hash = calculate_all_hash(get_resault(secure_filename(file.filename)))
+
+        # Получаем дату создания файла
+        file_stat = os.stat(file_path)
+        creation_time = file_stat.st_ctime
+
+        ins_file_data(name, ins_name, creation_time, calc_str_hash, calc_hash, calc_all_hash)
+
         
         return render_template('index.html', dbstatus=dstat, good_name=good_name, good_passwd=good_passwd,
                                status=check_passw(good_passwd, good_name)[1], nfile=ins_name)
@@ -107,8 +113,8 @@ def secpage():
         if file:
             filename = secure_filename(file.filename)
             print(filename)
-            ff1 = filename
-
+            # ff1 = filename
+            ff1 = session['name']
             arr = get_resault(ff1)
            
         return render_template('secpage.html', file2 = ff1, outarr = arr)        

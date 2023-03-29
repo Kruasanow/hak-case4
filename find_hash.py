@@ -26,12 +26,13 @@ def calculate_string_hash(input_string):
     return hash_obj.hexdigest()
 
 
-# def calculate_all_hash(all_data_dict):
-#     input_string = ''.join([str(element) for pair in all_data_dict.items() for element in pair])
-#     hash_function = hashlib.sha256
-#     hash_obj = hash_function()
-#     hash_obj.update(input_string.encode('utf-8'))
-#     return hash_obj.hexdigest()
+def calculate_all_hash(all_data_dict):
+    # input_string = ''.join([str(element) for pair in all_data_dict.items() for element in pair])
+    input_string = ''.join(str(all_data_dict))
+    hash_function = hashlib.sha256
+    hash_obj = hash_function()
+    hash_obj.update(input_string.encode('utf-8'))
+    return hash_obj.hexdigest()
 
 
 
